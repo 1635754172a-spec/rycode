@@ -55,11 +55,11 @@ npm install
 cp .env.example .env
 # 编辑 .env，填入你的 API Key（至少配置一个 AI 提供商）
 
-# 初始化数据库
-npx prisma migrate dev
+# 初始化数据库（自动创建 SQLite 文件，无需安装数据库）
+npm run setup
 
 # 启动开发服务器（前端 + 后端同时启动）
-npm run dev
+npm run dev:all
 ```
 
 浏览器访问 [http://localhost:5173](http://localhost:5173)

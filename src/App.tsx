@@ -1,4 +1,4 @@
-import React, { useState, useCallback } from 'react';
+import React, { useState, useCallback, useEffect } from 'react';
 import { Sidebar } from '@/src/components/layout/Sidebar';
 import { TopBar } from '@/src/components/layout/TopBar';
 import { Dashboard } from '@/src/pages/Dashboard';
@@ -8,8 +8,9 @@ import { SettingsPage } from '@/src/pages/SettingsPage';
 import { CatalogPage } from '@/src/pages/CatalogPage';
 import { Page } from '@/src/types';
 import { motion, AnimatePresence } from 'motion/react';
-import { CheckCircle2, X, Loader2 } from 'lucide-react';
+import { CheckCircle2, X, Loader2, Key } from 'lucide-react';
 import type { FeedbackData } from '@/src/pages/FeedbackPage';
+import { settingsApi } from '@/src/lib/api';
 
 const API_BASE = 'http://localhost:3001/api';
 function getToken() { return localStorage.getItem('rycode_token'); }
@@ -43,6 +44,18 @@ function AppShell() {
   const [currentPage, setCurrentPage] = useState<Page>('dashboard');
   const [lastFeedback, setLastFeedback] = useState<FeedbackData | null>(null);
   const [currentProblem, setCurrentProblem] = useState<AppProblem | null>(null);
+
+  // API key onboarding banner
+  const [showNoKeyBanner, setShowNoKeyBanner] = useState(false);
+
+  useEffect(() => {
+    // Check if user has any AI provider configured
+    settingsApi.getApiKeys()
+      .then(({ apiKeys }) => {
+        if (apiKeys.length === 0) setShowNoKeyBanner(true);
+      })
+      .catch(() => {}); // silently fail if backend not ready
+  }, []);
 
   // Global task generation state (survives page navigation)
   const [isGenerating, setIsGenerating] = useState(false);
@@ -249,6 +262,34 @@ function AppShell() {
 
       <main className="flex-1 ml-64 h-screen flex flex-col relative">
         <TopBar title={getTitle()} breadcrumb={getBreadcrumb()} />
+
+        {/* No API Key Banner */}
+        <AnimatePresence>
+          {showNoKeyBanner && (
+            <motion.div
+              initial={{ opacity: 0, y: -8 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -8 }}
+              className="fixed top-16 left-64 right-0 z-40 bg-amber-500/10 border-b border-amber-500/20 px-6 py-2.5 flex items-center justify-between"
+            >
+              <div className="flex items-center gap-2 text-xs text-amber-400">
+                <Key className="w-3.5 h-3.5 shrink-0" />
+                <span>尚未配置 AI 提供商 — AI 功能暂不可用。请前往设置页面添加 API Key。</span>
+              </div>
+              <div className="flex items-center gap-3 shrink-0">
+                <button
+                  onClick={() => { handlePageChange('settings'); setShowNoKeyBanner(false); }}
+                  className="text-xs font-bold text-amber-400 hover:text-amber-300 underline"
+                >
+                  去设置
+                </button>
+                <button onClick={() => setShowNoKeyBanner(false)} className="text-amber-400/60 hover:text-amber-400">
+                  <X className="w-3.5 h-3.5" />
+                </button>
+              </div>
+            </motion.div>
+          )}
+        </AnimatePresence>
 
         <div className="flex-1 overflow-hidden relative flex flex-col">
           <div className="h-16 shrink-0" /> {/* Spacer for fixed TopBar */}

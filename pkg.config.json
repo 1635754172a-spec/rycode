@@ -1,0 +1,12 @@
+{
+  "scripts": "build/server/**/*.js",
+  "assets": [
+    "dist/**/*",
+    "prisma/schema.prisma",
+    "prisma/migrations/**/*",
+    "node_modules/.prisma/**/*",
+    "node_modules/@prisma/client/**/*"
+  ],
+  "targets": ["node20-win-x64"],
+  "outputPath": "release"
+}

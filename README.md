@@ -45,7 +45,7 @@
 
 ```bash
 # 克隆仓库
-git clone https://github.com/your-username/rycode.git
+git clone https://github.com/1635754172a-spec/rycode.git
 cd rycode
 
 # 安装依赖
@@ -77,6 +77,48 @@ npm run dev:all
 | `ANTHROPIC_API_KEY` | Anthropic Claude API Key | ⬜ 至少一个 |
 | `JUDGE0_API_KEY` | Judge0 代码执行（[免费申请](https://rapidapi.com/judge0-official/api/judge0-ce)） | ⬜ 可选 |
 
+## 📖 核心功能详解
+
+### 1. 教材导入
+进入**教材目录** → 点击**导入** → 粘贴教程 URL（如 `https://www.liaoxuefeng.com/wiki/1016959663602400`）或上传 PDF/Markdown 文件。RYcode 将：
+- 用 AI 提取目录结构，自动组织成章节/课时
+- 后台并发抓取每个课时的真实内容（廖雪峰等 gitsite 站点）
+- 内容存入数据库，供 AI 出题时参考
+
+### 2. 生成练习题
+点击任意课时的**生成任务**，AI 同时生成 3 道题：
+- 🟢 **简单** — 课时基础概念直接应用
+- 🟡 **中等** — 结合实际场景，需要一定设计
+- 🔴 **困难** — 边界情况、性能优化、综合运用
+
+历史提交中识别出的薄弱点会自动注入 prompt，出题更有针对性。
+
+### 3. 编写与运行代码
+Monaco 编辑器提供完整 IDE 体验：
+- **真实文件系统** — 文件持久化，切换页面不丢失
+- **一键运行** — Judge0 引擎执行，显示 stdout/stderr
+- **多语言支持** — Python、JavaScript、TypeScript、Java、C++、Go
+- **题目侧边栏** — 可折叠的题目描述 + 分层提示
+
+### 4. AI 深度批改
+点击**提交评审**，AI 从三个维度评分：
+- **正确性**（权重 50%）— 逻辑准确，边界处理
+- **效率**（权重 30%）— 时间/空间复杂度
+- **可读性**（权重 20%）— 命名、注释、代码结构
+
+同时返回优化版参考代码，并记录薄弱知识点供后续强化。
+
+### 5. AI 对话答疑
+批改完成后，展开底部**向 AI 提问**面板，多轮追问：
+- 「为什么我的循环效率低？」
+- 「解释一下优化后的方案」
+- 「我还遗漏了哪些边界情况？」
+
+### 6. 记忆与强化
+- 每次批改后 AI 识别薄弱点（如「递归优化」「边界处理」）并存入数据库
+- 生成下一道题时，自动加入薄弱点提示
+- 首页展示 Top 5 薄弱点 + 过去 7 天评分趋势
+
 ## 🛠️ 技术栈
 
 **前端**
@@ -87,26 +129,13 @@ npm run dev:all
 
 **后端**
 - Express.js + TypeScript（ESM）
-- Prisma ORM + SQLite
+- Prisma ORM + SQLite（零配置本地数据库）
 - JWT 认证 + AES-256 密钥加密存储
 
 **AI 集成**
 - 统一 Adapter 层，支持 Gemini / OpenAI / Claude
-- 兼容任意 OpenAI 格式接口（DeepSeek、SiliconFlow、Ollama 等）
-- 支持用户自定义默认 Provider
-
-## 📋 Roadmap
-
-- [x] AI 智能出题（简单/中等/困难）
-- [x] Monaco 编辑器 + 真实文件系统
-- [x] AI 代码批改 + 对话答疑
-- [x] 多源教材导入（URL/PDF/MD/GitHub）
-- [x] 多 AI 提供商 + 自定义 Provider
-- [x] Judge0 代码执行引擎
-- [x] 薄弱点记忆与个性化出题
-- [ ] 移动端适配
-- [ ] 多用户协作 / 班级模式
-- [ ] VS Code 插件
+- 兼容任意 OpenAI 格式接口（DeepSeek、SiliconFlow、Ollama、阿里云百炼等）
+- 设置页面可随时添加/切换默认 Provider
 
 ## 📄 License
 

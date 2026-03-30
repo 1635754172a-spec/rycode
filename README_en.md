@@ -36,23 +36,25 @@
 
 ## 🚀 Quick Start
 
-### Prerequisites
+### Option 1: One-click Launch (Recommended)
 
-- Node.js >= 18
-- npm >= 9
+> Only requires [Node.js 18+](https://nodejs.org)
 
-### Installation
+1. Download and unzip this repo ([Download ZIP](https://github.com/1635754172a-spec/rycode/archive/refs/heads/main.zip))
+2. Double-click `start.bat`
+3. First run auto-installs dependencies and initializes the database — browser opens automatically
+
+For all subsequent runs, just double-click `start.bat`.
+
+### Option 2: Developer Mode
 
 ```bash
 # Clone the repository
 git clone https://github.com/1635754172a-spec/rycode.git
 cd rycode
 
-# Install dependencies
-npm install
-
-# Initialize database (auto-creates SQLite file, no DB server needed)
-npm run setup
+# Install dependencies + initialize database
+npm install && npm run setup
 
 # Start development server (frontend + backend)
 npm run dev:all

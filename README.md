@@ -36,23 +36,25 @@
 
 ## 🚀 快速开始
 
-### 环境要求
+### 方式一：一键启动（推荐）
 
-- Node.js >= 18
-- npm >= 9
+> 需要 [Node.js 18+](https://nodejs.org)（仅此一个前置条件）
 
-### 安装
+1. 下载并解压本仓库（[Download ZIP](https://github.com/1635754172a-spec/rycode/archive/refs/heads/main.zip)）
+2. 双击 `start.bat`
+3. 首次运行自动完成依赖安装和数据库初始化，浏览器自动打开
+
+后续每次启动只需双击 `start.bat` 即可。
+
+### 方式二：开发者模式
 
 ```bash
 # 克隆仓库
 git clone https://github.com/1635754172a-spec/rycode.git
 cd rycode
 
-# 安装依赖
-npm install
-
-# 初始化数据库（自动创建 SQLite 文件，无需安装数据库）
-npm run setup
+# 安装依赖 + 初始化数据库
+npm install && npm run setup
 
 # 启动开发服务器（前端 + 后端同时启动）
 npm run dev:all

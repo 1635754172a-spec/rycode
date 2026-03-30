@@ -1,0 +1,39 @@
+# Dependencies
+node_modules/
+
+# Build outputs
+build/
+dist/
+coverage/
+
+# OS
+.DS_Store
+Thumbs.db
+nul
+
+# Logs
+*.log
+logs/
+
+# Environment
+.env
+.env.local
+.env.*.local
+
+# Database
+*.db
+*.db-journal
+*.db-wal
+*.db-shm
+
+# Uploads & workspace (user data)
+uploads/
+workspace/
+
+# Prisma generated
+/src/generated/prisma
+prisma/generated/
+
+# Editor
+.vscode/
+.idea/

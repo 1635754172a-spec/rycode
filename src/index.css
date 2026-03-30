@@ -1,0 +1,195 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Space+Grotesk:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap');
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
+  --font-headline: "Space Grotesk", sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, SFMono-Regular, monospace;
+
+  --color-background: var(--color-background-v);
+  --color-surface: var(--color-surface-v);
+  --color-surface-container-low: var(--color-surface-container-low-v);
+  --color-surface-container-high: var(--color-surface-container-high-v);
+  --color-surface-container-highest: var(--color-surface-container-highest-v);
+  --color-surface-bright: var(--color-surface-bright-v);
+  --color-surface-variant: var(--color-surface-variant-v);
+  
+  --color-primary: var(--color-primary-v);
+  --color-primary-dim: var(--color-primary-dim-v);
+  --color-on-primary: var(--color-on-primary-v);
+  
+  --color-secondary: var(--color-secondary-v);
+  --color-secondary-dim: var(--color-secondary-dim-v);
+  --color-on-secondary: var(--color-on-secondary-v);
+  --color-secondary-container: var(--color-secondary-container-v);
+  
+  --color-tertiary: var(--color-tertiary-v);
+  --color-tertiary-dim: var(--color-tertiary-dim-v);
+  
+  --color-error: var(--color-error-v);
+  --color-on-surface: var(--color-on-surface-v);
+  --color-on-surface-variant: var(--color-on-surface-variant-v);
+  --color-outline: var(--color-outline-v);
+  --color-outline-variant: var(--color-outline-variant-v);
+}
+
+@layer base {
+  :root {
+    /* Editorial Synth-Dark Palette (Default) */
+    --color-background-v: #060e20;
+    --color-surface-v: #060e20;
+    --color-surface-container-low-v: #091328;
+    --color-surface-container-high-v: #141f38;
+    --color-surface-container-highest-v: #192540;
+    --color-surface-bright-v: #1f2b49;
+    --color-surface-variant-v: #192540;
+    
+    --color-primary-v: #a3a6ff;
+    --color-primary-dim-v: #6063ee;
+    --color-on-primary-v: #0f00a4;
+    
+    --color-secondary-v: #a98ffd;
+    --color-secondary-dim-v: #8a66ff;
+    --color-on-secondary-v: #2e0064;
+    --color-secondary-container-v: #4d329b;
+    
+    --color-tertiary-v: #ff9dd1;
+    --color-tertiary-dim-v: #eb7bba;
+    
+    --color-error-v: #ff6e84;
+    --color-on-surface-v: #dee5ff;
+    --color-on-surface-variant-v: #a3aac4;
+    --color-outline-v: #6d758c;
+    --color-outline-variant-v: #40485d;
+  }
+
+  .light {
+    /* Light Theme (Minimalist, White bg, Orange accents) */
+    --color-background-v: #ffffff;
+    --color-surface-v: #ffffff;
+    --color-surface-container-low-v: #f8f9fa;
+    --color-surface-container-high-v: #f1f3f5;
+    --color-surface-container-highest-v: #e9ecef;
+    --color-surface-bright-v: #ffffff;
+    --color-surface-variant-v: #f8f9fa;
+    
+    --color-primary-v: #f97316;
+    --color-primary-dim-v: #ea580c;
+    --color-on-primary-v: #ffffff;
+    
+    --color-secondary-v: #fb923c;
+    --color-secondary-dim-v: #f97316;
+    --color-on-secondary-v: #ffffff;
+    --color-secondary-container-v: #ffedd5;
+    
+    --color-tertiary-v: #fdba74;
+    --color-tertiary-dim-v: #fb923c;
+    
+    --color-error-v: #ef4444;
+    --color-on-surface-v: #111827;
+    --color-on-surface-variant-v: #4b5563;
+    --color-outline-v: #9ca3af;
+    --color-outline-variant-v: #d1d5db;
+  }
+
+  body {
+    @apply bg-background text-on-surface font-sans antialiased transition-colors duration-300;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-headline tracking-tight;
+  }
+}
+
+@layer components {
+  .signature-texture {
+    background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-primary-dim) 100%);
+  }
+
+  .glass-panel {
+    @apply bg-surface-variant/60 backdrop-blur-md;
+  }
+
+  .custom-scrollbar::-webkit-scrollbar {
+    @apply w-1.5;
+  }
+  .custom-scrollbar::-webkit-scrollbar-track {
+    @apply bg-surface-container-low/30;
+  }
+  .custom-scrollbar::-webkit-scrollbar-thumb {
+    @apply bg-outline-variant/50 rounded-full hover:bg-primary/50 transition-colors;
+  }
+}
+
+/* Code highlighting colors */
+.syntax-keyword { color: var(--color-primary); }
+.syntax-function { color: var(--color-tertiary); }
+.syntax-variable { color: var(--color-secondary); }
+.syntax-string { color: #8387ff; }
+.syntax-comment { color: var(--color-outline-variant); }
+.syntax-constant { color: var(--color-primary); }
+
+/* Prism Overrides */
+pre[class*="language-"],
+code[class*="language-"] {
+  @apply font-mono !bg-transparent !p-0 !m-0;
+}
+
+.token.comment,
+.token.prolog,
+.token.doctype,
+.token.cdata {
+  @apply text-outline-variant italic;
+}
+
+.token.punctuation {
+  @apply text-on-surface/50;
+}
+
+.token.namespace {
+  @apply opacity-70;
+}
+
+.token.property,
+.token.tag,
+.token.boolean,
+.token.number,
+.token.constant,
+.token.symbol,
+.token.deleted {
+  @apply text-primary;
+}
+
+.token.selector,
+.token.attr-name,
+.token.string,
+.token.char,
+.token.builtin,
+.token.inserted {
+  @apply text-tertiary;
+}
+
+.token.operator,
+.token.entity,
+.token.url,
+.language-css .token.string,
+.style .token.string {
+  @apply text-secondary;
+}
+
+.token.atrule,
+.token.attr-value,
+.token.keyword {
+  @apply text-primary-dim font-bold;
+}
+
+.token.function,
+.token.class-name {
+  @apply text-tertiary-dim;
+}
+
+.token.regex,
+.token.important,
+.token.variable {
+  @apply text-secondary-dim;
+}

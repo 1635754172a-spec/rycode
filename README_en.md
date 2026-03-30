@@ -51,10 +51,6 @@ cd rycode
 # Install dependencies
 npm install
 
-# Configure environment variables
-cp .env.example .env
-# Edit .env and add at least one AI provider API key
-
 # Initialize database (auto-creates SQLite file, no DB server needed)
 npm run setup
 
@@ -64,18 +60,13 @@ npm run dev:all
 
 Open [http://localhost:5173](http://localhost:5173) in your browser.
 
-> You can also add API keys directly in the app's Settings page — no restart required.
-
 ### Environment Variables
 
 | Variable | Description | Required |
 |----------|-------------|----------|
-| `DATABASE_URL` | SQLite database path | ✅ |
-| `JWT_SECRET` | JWT signing secret (change in production) | ✅ |
-| `GEMINI_API_KEY` | Google Gemini API Key | ⬜ At least one |
-| `OPENAI_API_KEY` | OpenAI API Key | ⬜ At least one |
-| `ANTHROPIC_API_KEY` | Anthropic Claude API Key | ⬜ At least one |
-| `JUDGE0_API_KEY` | Judge0 code execution ([free tier](https://rapidapi.com/judge0-official/api/judge0-ce)) | ⬜ Optional |
+| `*_API_KEY` | AI provider key (Gemini / OpenAI / Claude etc. — also configurable in the app's Settings page) | ⬜ At least one |
+| `JUDGE0_API_KEY` | Judge0 code execution engine ([free on RapidAPI](https://rapidapi.com/judge0-official/api/judge0-ce)) | ⬜ Optional |
+| `DATABASE_URL` | SQLite path, defaults to `file:./dev.db` — no change needed | ✅ |
 
 ## 📖 How It Works
 

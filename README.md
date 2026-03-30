@@ -51,10 +51,6 @@ cd rycode
 # 安装依赖
 npm install
 
-# 配置环境变量
-cp .env.example .env
-# 编辑 .env，填入你的 API Key（至少配置一个 AI 提供商）
-
 # 初始化数据库（自动创建 SQLite 文件，无需安装数据库）
 npm run setup
 
@@ -64,18 +60,13 @@ npm run dev:all
 
 浏览器访问 [http://localhost:5173](http://localhost:5173)
 
-> 也可以在应用内「设置」页面配置 AI API Key，无需重启服务器。
-
 ### 环境变量说明
 
 | 变量 | 说明 | 必填 |
 |------|------|------|
-| `DATABASE_URL` | SQLite 数据库路径 | ✅ |
-| `JWT_SECRET` | JWT 签名密钥（生产环境请修改） | ✅ |
-| `GEMINI_API_KEY` | Google Gemini API Key | ⬜ 至少一个 |
-| `OPENAI_API_KEY` | OpenAI API Key | ⬜ 至少一个 |
-| `ANTHROPIC_API_KEY` | Anthropic Claude API Key | ⬜ 至少一个 |
-| `JUDGE0_API_KEY` | Judge0 代码执行（[免费申请](https://rapidapi.com/judge0-official/api/judge0-ce)） | ⬜ 可选 |
+| `*_API_KEY` | AI 提供商 API Key（Gemini / OpenAI / Claude 等，也可在应用设置页添加） | ⬜ 至少一个 |
+| `JUDGE0_API_KEY` | Judge0 代码执行引擎（[RapidAPI 免费申请](https://rapidapi.com/judge0-official/api/judge0-ce)） | ⬜ 可选 |
+| `DATABASE_URL` | SQLite 数据库路径，默认 `file:./dev.db`，无需修改 | ✅ |
 
 ## 📖 核心功能详解
 

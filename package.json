@@ -15,10 +15,8 @@
     "db:studio": "prisma studio",
     "db:generate": "prisma generate",
     "setup": "prisma migrate deploy && prisma generate",
-    "build:server": "tsc --project tsconfig.server.json",
     "build:all": "npm run build && npm run build:server",
-    "start": "node build/server/index.js",
-    "release:win": "npm run build:all && pkg . --config pkg.config.json --targets node20-win-x64 --output release/rycode-win.exe"
+    "start": "node build/server/index.js"
   },
   "dependencies": {
     "@google/genai": "^1.29.0",

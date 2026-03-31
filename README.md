@@ -77,6 +77,8 @@ npm run dev:all
 - 用 AI 提取目录结构，自动组织成章节/课时
 - 后台并发抓取每个课时的真实内容（廖雪峰等 gitsite 站点）
 - 内容存入数据库，供 AI 出题时参考
+- ![动画](https://github.com/user-attachments/assets/e4cc28d9-361e-47ff-81e6-676f65bc8d9d)
+
 
 ### 2. 生成练习题
 点击任意课时的**生成任务**，AI 同时生成 3 道题：
@@ -85,6 +87,8 @@ npm run dev:all
 - 🔴 **困难** — 边界情况、性能优化、综合运用
 
 历史提交中识别出的薄弱点会自动注入 prompt，出题更有针对性。
+<img width="3522" height="1958" alt="ef2808995d566a78ef02b02ce3293a7c" src="https://github.com/user-attachments/assets/b7f0fb11-e954-42ff-9ee4-0117aadcc6b9" />
+
 
 ### 3. 编写与运行代码
 Monaco 编辑器提供完整 IDE 体验：
@@ -92,6 +96,8 @@ Monaco 编辑器提供完整 IDE 体验：
 - **一键运行** — Judge0 引擎执行，显示 stdout/stderr
 - **多语言支持** — Python、JavaScript、TypeScript、Java、C++、Go
 - **题目侧边栏** — 可折叠的题目描述 + 分层提示
+- <img width="3522" height="1958" alt="8e7ff04f093cb21fa917a67cc205150f" src="https://github.com/user-attachments/assets/6e5c04d5-273a-4774-8523-513bc3be52a1" />
+
 
 ### 4. AI 深度批改
 点击**提交评审**，AI 从三个维度评分：
